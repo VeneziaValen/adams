@@ -5,12 +5,14 @@
 ### x = 0,...,1
 
 
+
 import numpy as np
 from matplotlib import pyplot as plt
 def f(x,y):
 	return y-x
-ea = 8*10**(-8)
-err= 1
+ea = 10**(-8)
+err= 10**-5
+error= [err]
 x0 = 0
 y0 = 2
 xf = 1
@@ -51,23 +53,38 @@ while(err > ea):
 		print (round(x[i],3),"\t",format(py[i],'6f'),"\t",format(y[i],'6f'))
 
 	err = abs((y[n-1]-py[n-1])/y[n-1])
+	error.append(err)
 	print(err)
 	print(err*19/270)
-	if((err*19/270)>10**(-8)):
+	if(err>10**(-8)):
 		deltax=deltax/2
-	elif((err*19/270)<10**(-10)):
+		
+	elif(err<10**(-10)):
 		deltax = deltax*2
+		
 	else:
 		deltax = deltax
-		exit()
+		
+
+
+	
+
+#	if((err*19/270)>10**(-8)):
+#		deltax=deltax/2
+#	elif((err*19/270)<10**(-10)):
+#		deltax = deltax*2
+#	else:
+#		deltax = deltax
+#		exit()
 	
 
 
 
-#plt.plot(x,y,'o')
-#plt.xlabel("Value of x")
-#plt.ylabel("Value of y")
+plt.plot(it,error,'-')
+#plt.yticks(np.arange(0,1,))
+plt.xlabel("Value of x")
+plt.ylabel("Value of y")
 #plt.title("Approximation Solution with Adams-Bashforth-Moulton Method")
-#plt.show()
+plt.show()
 
 #table 19-6
