@@ -1,11 +1,3 @@
-### soal dari buku Schaum's Outlines: Differential Equations, 4th Edition
-### nomor 19.7
-### y' = y-x
-### y(0) = 2
-### x = 0,...,1
-
-
-
 import numpy as np
 from matplotlib import pyplot as plt
 import math
@@ -68,7 +60,7 @@ while(err > ea):
 		y0=y[0]
 	else:
 		deltax = deltax
-	#error.append(err)
+
 	print(err)
 	print(e)
 plt.subplot(211)	
