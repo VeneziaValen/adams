@@ -9,11 +9,12 @@
 import numpy as np
 from matplotlib import pyplot as plt
 import math
+import prettytable
 def f(x,y):
 	return math.sin(math.radians(x*y**(2)))
 ea = 8*10**(-8)
 err= 1
-error= [err]
+
 x0 = 1
 y0 = 3
 xf = 2
@@ -30,10 +31,12 @@ while(err > ea):
 	x = np.linspace(x0,xf,n)
 	print("n: " ,n)
 	print("h: ", deltax)
-
+	p = prettytable.PrettyTable(["X", "AB","AM","Error"])
 	y = np.zeros([n])
 	y[0] = y0
 	py = np.zeros([n])
+	error = np.zeros([n])
+	error[0] = 1
 	for i in range(0,4):
 		py[i] = None
 	for i in range(1,4):
@@ -43,15 +46,18 @@ while(err > ea):
 		k4 = deltax*f(x[i-1]+deltax,y0+k3)
 		y[i] =  y0 + (k1 + 2*k2 + 2*k3 + k4)/6
 		y0 = y[i]
+		error[i] =1
 
 	for i in range(4,n):
 		py[i] = deltax/24*(55*f(x[i-1],y[i-1]) - 59*f(x[i-2],y[i-2]) + 37*f(x[i-3],y[i-3]) - 9*f(x[i-4],y[i-4]) )  + y[i-1] 
 		y[i] = deltax/24*( 9*f(x[i],py[i]) + 19*f(x[i-1],y[i-1]) - 5*f(x[i-2],y[i-2]) + f(x[i-3],y[i-3]) ) + y[i-1]
-
-	print("x_n\t   py_n\t           y_n")
-	for i in range(n):
-		print (round(x[i],3),"\t",format(py[i],'6f'),"\t",format(y[i],'6f'))
-
+		error[i] = abs((y[i]-py[i])/y[i])
+	
+	#print("x_n\t   py_n\t           y_n\t\t error")
+	for j in range(n):
+		#print (round(x[i],3),"\t",py[i],"\t",y[i],"\t", error[i])
+		p.add_row([round(x[j],3),py[j],y[j],error[j]])
+	print(p)
 	err = abs((y[4]-py[4])/y[4])
 	e = err*19/270
 	if(e>10**(-8)):
@@ -62,8 +68,11 @@ while(err > ea):
 		y0=y[0]
 	else:
 		deltax = deltax
-	error.append(err)
+	#error.append(err)
 	print(err)
 	print(e)
+	
 
+		
+	
 	
