@@ -44,10 +44,7 @@ while(err > ea):
 		py[i] = deltax/24*(55*f(x[i-1],y[i-1]) - 59*f(x[i-2],y[i-2]) + 37*f(x[i-3],y[i-3]) - 9*f(x[i-4],y[i-4]) )  + y[i-1] 
 		y[i] = deltax/24*( 9*f(x[i],py[i]) + 19*f(x[i-1],y[i-1]) - 5*f(x[i-2],y[i-2]) + f(x[i-3],y[i-3]) ) + y[i-1]
 		error[i] = abs((y[i]-py[i])/y[i])
-	
-	#print("x_n\t   py_n\t           y_n\t\t error")
 	for j in range(n):
-		#print (round(x[i],3),"\t",py[i],"\t",y[i],"\t", error[i])
 		p.add_row([round(x[j],3),py[j],y[j],error[j]])
 	print(p)
 	err = abs((y[4]-py[4])/y[4])
