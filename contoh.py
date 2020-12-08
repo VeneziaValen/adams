@@ -71,8 +71,15 @@ while(err > ea):
 	#error.append(err)
 	print(err)
 	print(e)
-	
-
-		
+plt.subplot(211)	
+plt.plot(x,py,'bo', label = 'prediktor')
+plt.plot(x,y,'r-*', label = 'korektor')
+plt.legend(loc = "upper left")
+plt.ylabel("Nilai y")
+plt.subplot(212)
+plt.plot(x,error,'g-')
+plt.xlabel("Nilai x")
+plt.ylabel("error")
+plt.show()
 	
 	
