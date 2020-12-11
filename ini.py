@@ -13,7 +13,11 @@ xf = 2
 iter = 0
 it = [0]
 h = 0.2
-
+print("soal")
+print("y' = sin(xy^2)")
+print("interval x = [1,2]")
+print("y0 = 3")
+print("error = ", ea, "\n")
 
 while(err > ea):
 	iter=iter+1
